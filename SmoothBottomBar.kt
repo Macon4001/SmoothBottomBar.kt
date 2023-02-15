@@ -1,4 +1,4 @@
-package me.ibrahimsn.lib
+package me.macon4001.lib
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -427,6 +427,9 @@ class SmoothBottomBar @JvmOverloads constructor(
                 height.toFloat(),
                 paintBackground
             )
+        }
+        if (items.isEmpty()) {
+        return
         }
 
         // Draw indicator
