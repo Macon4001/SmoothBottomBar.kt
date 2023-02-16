@@ -1,4 +1,4 @@
-package me.macon4001.lib
+package com.fittrackapp.me.macon4001.lib
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -23,8 +23,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import androidx.navigation.NavController
-import me.ibrahimsn.lib.ext.d2p
-import kotlin.math.roundToInt
+import com.fittrackapp.R
+import com.fittrackapp.me.macon4001.lib.ext.d2p
+
 
 class SmoothBottomBar @JvmOverloads constructor(
     context: Context,
@@ -48,7 +49,7 @@ class SmoothBottomBar @JvmOverloads constructor(
     private var _barBackgroundColor = Color.WHITE
 
     @ColorInt
-    private var _barIndicatorColor = Color.parseColor(DEFAULT_INDICATOR_COLOR)
+    private var _barIndicatorColor =Color.parseColor(DEFAULT_INDICATOR_COLOR)
 
     @Dimension
     private var _barIndicatorRadius = context.d2p(DEFAULT_CORNER_RADIUS)
@@ -58,7 +59,7 @@ class SmoothBottomBar @JvmOverloads constructor(
 
     @Dimension
     private var _barCornerRadius = context.d2p(DEFAULT_BAR_CORNER_RADIUS)
-    
+
     private var _barCorners = DEFAULT_BAR_CORNERS
 
     @Dimension
@@ -73,13 +74,13 @@ class SmoothBottomBar @JvmOverloads constructor(
     private var _itemIconMargin = context.d2p(DEFAULT_ICON_MARGIN)
 
     @ColorInt
-    private var _itemIconTint = Color.parseColor(DEFAULT_TINT)
+    private var _itemIconTint =Color.parseColor(DEFAULT_TINT)
 
     @ColorInt
-    private var _itemIconTintActive = Color.WHITE
+    private var _itemIconTintActive =Color.WHITE
 
     @ColorInt
-    private var _itemTextColor = Color.WHITE
+    private var _itemTextColor =Color.WHITE
 
     @Dimension
     private var _itemTextSize = context.d2p(DEFAULT_TEXT_SIZE)
@@ -199,7 +200,7 @@ class SmoothBottomBar @JvmOverloads constructor(
         set(@FontRes value) {
             _itemFontFamily = value
             if (value != INVALID_RES) {
-                paintText.typeface = ResourcesCompat.getFont(context, value)
+                paintText.typeface =ResourcesCompat.getFont(context, value)
                 invalidate()
             }
         }
@@ -222,9 +223,9 @@ class SmoothBottomBar @JvmOverloads constructor(
         }
 
     // Listeners
-    var onItemSelectedListener: OnItemSelectedListener? = null
+    var onItemSelectedListener: com.fittrackapp.me.macon4001.lib.OnItemSelectedListener? = null
 
-    var onItemReselectedListener: OnItemReselectedListener? = null
+    var onItemReselectedListener: com.fittrackapp.me.macon4001.lib.OnItemReselectedListener? = null
 
     var onItemSelected: ((Int) -> Unit)? = null
 
@@ -260,6 +261,7 @@ class SmoothBottomBar @JvmOverloads constructor(
 
         ViewCompat.setAccessibilityDelegate(this, exploreByTouchHelper)
     }
+
 
     private fun obtainStyledAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         val typedArray = context.theme.obtainStyledAttributes(
@@ -370,7 +372,7 @@ class SmoothBottomBar @JvmOverloads constructor(
                 item.title += context.getString(R.string.ellipsis)
             }
 
-            item.rect = RectF(lastX, 0f, itemWidth + lastX, height.toFloat())
+            item.rect =RectF(lastX, 0f, itemWidth + lastX, height.toFloat())
             lastX += itemWidth
         }
 
@@ -427,9 +429,6 @@ class SmoothBottomBar @JvmOverloads constructor(
                 height.toFloat(),
                 paintBackground
             )
-        }
-        if (items.isEmpty()) {
-        return
         }
 
         // Draw indicator
@@ -567,7 +566,7 @@ class SmoothBottomBar @JvmOverloads constructor(
                 items[itemActiveIndex].rect.left
             ).apply {
                 duration = itemAnimDuration
-                interpolator = DecelerateInterpolator()
+                interpolator =DecelerateInterpolator()
                 addUpdateListener { animation ->
                     indicatorLocation = animation.animatedValue as Float
                 }
@@ -603,10 +602,10 @@ class SmoothBottomBar @JvmOverloads constructor(
     /**
      * Created by Vladislav Perevedentsev on 29.07.2020.
      *
-     * Just call [SmoothBottomBar.setOnItemSelectedListener] to override [onItemSelectedListener]
+     * Just call [SmoothBottomBar.setOnItemReselectedListener] to override [onItemReselectedListener]
      *
      * @sample
-     * setOnItemSelectedListener { position ->
+     * setOnItemReselectedListener { position ->
      *     //TODO: Something
      * }
      */
